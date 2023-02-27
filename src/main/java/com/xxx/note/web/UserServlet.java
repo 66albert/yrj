@@ -1,9 +1,11 @@
 package com.xxx.note.web;
 
+import cn.hutool.core.io.FileUtil;
 import com.mysql.cj.PreparedQuery;
 import com.xxx.note.po.User;
 import com.xxx.note.service.UserService;
 import com.xxx.note.vo.ResultInfo;
+import org.apache.commons.io.FileUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -49,7 +52,42 @@ public class UserServlet extends HttpServlet {
         } else if ("userCenter".equals(actionName)) {
             // 进入个人中心
             userCenter(request,response);
+        } else if ("userHead".equals(actionName)) {
+            // 加载头像
+            userHead(request,response);
         }
+    }
+
+    /**
+     * 加载头像
+     * 1.获取参数（图片名称）
+     * 2.得到图片的存放路径（request.getServletContext().getRealPath("/")
+     * 3.通过图片的完整路径，得到一个file对象
+     * 4.通过截取得到图片的后缀
+     * 5.通过不同的图片后缀，设置不同的响应类型
+     * 6.利用FileUtils的copyFile()方法，将图片拷贝给浏览器
+     * @param request
+     * @param response
+     */
+    private void userHead(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 1.获取参数（图片名称）
+        String head = request.getParameter("imageName");
+        // 2.得到图片的存放路径（得到项目的真实路径request.getServletContext().getRealPath("/")
+        String realPath = request.getServletContext().getRealPath("/WEB-INF/upload");
+        // 3.通过图片的完整路径，得到一个file对象
+        File file = new File(realPath + "/" + head);
+        // 4.通过截取得到图片的后缀
+        String pic = head.substring(head.lastIndexOf(".") + 1);
+        // 5.通过不同的图片后缀，设置不同的响应类型
+        if ("png".equalsIgnoreCase(pic)) {
+            response.setContentType("image/png");
+        } else if ("jpg".equalsIgnoreCase(pic) || "jpeg".equalsIgnoreCase(pic)) {
+            response.setContentType("image/jpeg");
+        } else if ("gif".equalsIgnoreCase(pic)) {
+            response.setContentType("image/gif");
+        }
+        // 6.利用FileUtils的copyFile()方法，将图片拷贝给浏览器
+        FileUtils.copyFile(file, response.getOutputStream());
     }
 
     /**

@@ -109,7 +109,7 @@ public class LoginAccessFilter implements Filter {
                     String userName = val[0];
                     String userPwd = val[1];
                     // 7.请求转发跳转到登录操作   user?actionName=login&userName=姓名&userPwd=密码
-                    String url = "user?actionName=login&userName="+userName+"&userPwd="+userPwd;
+                    String url = "user?actionName=login&rem=1&userName="+userName+"&userPwd="+userPwd;
                     request.getRequestDispatcher(url).forward(request,response);
                     // 8.return
                     return;
