@@ -42,8 +42,26 @@ public class UserServlet extends HttpServlet {
         } else if ("logout".equals(actionName)) {
             // 用户退出
             userLogout(request,response);
+        } else if ("userCenter".equals(actionName)) {
+            // 进入个人中心
+            userCenter(request,response);
         }
     }
+
+    /**
+     * 进入个人中心
+     * 1、设置首页动态包含的页面值
+     * 2.请求转发跳转到index
+     * @param request
+     * @param response
+     */
+    private void userCenter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 1、设置首页动态包含的页面值
+        request.setAttribute("changePage", "user/info.jsp");
+        // 2.请求转发跳转到index
+        request.getRequestDispatcher("index.jsp").forward(request,response);
+    }
+
 
     /**
      * 1.销毁session对象
