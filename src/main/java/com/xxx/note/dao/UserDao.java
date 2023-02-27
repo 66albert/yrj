@@ -86,4 +86,30 @@ public class UserDao {
 
         return user;
     }
+
+
+    /**
+     * 通过昵称与用户id查询用户对象
+     * 1.定义SQL语句
+     *    通过用户ID查询除了自己当前登录用户之外是否有其他用户占用了该昵称
+     *        指定昵称    nick    （前台传递的参数）
+     *        当前用户    userID  （session作用域中的user对象）
+     *        String sql = "select * from tb_user where nick = ? and userId != ?"
+     * 2.设置参数集合
+     * 3.调用Basedao的查询方法
+     * @param nick
+     * @param userId
+     * @return
+     */
+    public User queryUserByNickAndUserId(String nick, Integer userId) {
+        // 1.定义SQL语句
+        String sql = "select * from tb_user where nick = ? and userId != ?";
+        // 2.设置参数集合
+        List<Object> params = new ArrayList<>();
+        params.add(nick);
+        params.add(userId);
+        // 3.调用Basedao的查询方法
+        User user = (User) BaseDao.queryRow(sql, params, User.class);
+        return user;
+    }
 }

@@ -93,4 +93,32 @@ public class UserService {
         return resultInfo;
     }
 
+    /**
+     * 验证昵称的唯一性
+     * 1.判断昵称是否为空
+     *     如果为空，返回'0'
+     * 2.调用dao层，通过用户id和昵称查询用户对象
+     * 3.判断用户对象是否存在
+     *     存在，返回’0‘
+     *     不存在，返回’1‘
+     * @param nick
+     * @param userId
+     * @return
+     */
+    public Integer checkNick(String nick, Integer userId) {
+        // 1.判断昵称是否为空
+        if (StrUtil.isBlank(nick)) {
+            // 如果为空，返回'0'
+            return 0;
+        }
+        // 2.调用dao层，通过用户id和昵称查询用户对象
+        User user = userDao.queryUserByNickAndUserId(nick, userId);
+        // 3.判断用户对象是否存在
+        if (user != null) {
+            // 存在，返回’0‘
+            return 0;
+        }
+        // 不存在，返回’1‘
+        return 1;
+    }
 }

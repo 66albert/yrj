@@ -55,7 +55,32 @@ public class UserServlet extends HttpServlet {
         } else if ("userHead".equals(actionName)) {
             // 加载头像
             userHead(request,response);
+        } else if ("checkName".equals(actionName)) {
+            // 验证昵称的唯一性
+            checkNick(request, response);
         }
+    }
+
+    /**
+     * 1.获取参数（昵称）
+     * 2.从session作用域中获取用户对象，得到用户ID
+     * 3.调用service层方法，得到返回结果
+     * 4.通过字符输出流将结果响应给前台的Ajax的回调函数
+     * 5.关闭资源
+     * @param request
+     * @param response
+     */
+    private void checkNick(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // 1.获取参数（昵称）
+        String nick = request.getParameter("nick");
+        // 2.从session作用域中获取用户对象，得到用户ID
+        User user = (User) request.getSession().getAttribute("user");
+        // 3.调用service层方法，得到返回结果
+        Integer code = userService.checkNick(nick, user.getUserId());
+        // 4.通过字符输出流将结果响应给前台的Ajax的回调函数
+        response.getWriter().write(code + "");
+        // 5.关闭资源
+        response.getWriter().close();
     }
 
     /**

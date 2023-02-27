@@ -10,6 +10,7 @@
     <script src="static/js/jquery-1.11.3.js"></script>
     <script src="static/bootstrap/js/bootstrap.js"></script>
     <script src="static/sweetalert/sweetalert2.min.js"></script>
+    <script src="static/js/util.js"></script>
     <!-- 配置文件 -->
     <script type="text/javascript" src="static/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
@@ -33,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" style="font-size:25px" href="main">云日记</a>
+            <a class="navbar-brand" style="font-size:25px" href="index">云日记</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -60,7 +61,7 @@
             <div class="data_list">
                 <div class="data_list_title"><span class="glyphicon glyphicon-user"></span>&nbsp;个人中心&nbsp;&nbsp;&nbsp;&nbsp;<a href="user?actionName=logout">退出</a></div>
                 <div class="userimg">
-                    <img src="static/images/h2.jpg">
+                    <img src="static/images/33333.jpg">
                 </div>
                 <div class="nick">我思故我在</div>
                 <div class="mood">(以后的你会感谢现在努力的你)</div>
