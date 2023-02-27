@@ -17,6 +17,8 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 设置首页导航高亮
+        request.setAttribute("menu_page", "index");
         // 设置首页动态包含的页面值
         request.setAttribute("changePage", "note/list.jsp");
         // 请求转发跳转到index.jsp

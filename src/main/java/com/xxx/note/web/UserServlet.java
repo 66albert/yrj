@@ -1,5 +1,6 @@
 package com.xxx.note.web;
 
+import com.mysql.cj.PreparedQuery;
 import com.xxx.note.po.User;
 import com.xxx.note.service.UserService;
 import com.xxx.note.vo.ResultInfo;
@@ -24,6 +25,9 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 设置首页导航高亮
+        request.setAttribute("menu_page", "user");
+
         /**
          * 用户行为：
          *         用户登录                actionName="login"
