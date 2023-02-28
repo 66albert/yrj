@@ -1,4 +1,11 @@
 com\xxx\note\filter\EncodingFilter.class
+com\xxx\note\vo\ResultInfo.class
+com\xxx\note\dao\BaseDao.class
+com\xxx\note\web\UserServlet.class
+com\xxx\note\dao\UserDao.class
 com\xxx\note\filter\LoginAccessFilter.class
+com\xxx\note\po\User.class
 com\xxx\note\filter\EncodingFilter$MyWapper.class
+com\xxx\note\util\DBUtil.class
 com\xxx\note\web\IndexServlet.class
+com\xxx\note\service\UserService.class

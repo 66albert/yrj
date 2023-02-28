@@ -55,7 +55,7 @@ public class UserServlet extends HttpServlet {
         } else if ("userHead".equals(actionName)) {
             // 加载头像
             userHead(request,response);
-        } else if ("checkName".equals(actionName)) {
+        } else if ("checkNick".equals(actionName)) {
             // 验证昵称的唯一性
             checkNick(request, response);
         }
@@ -98,7 +98,7 @@ public class UserServlet extends HttpServlet {
         // 1.获取参数（图片名称）
         String head = request.getParameter("imageName");
         // 2.得到图片的存放路径（得到项目的真实路径request.getServletContext().getRealPath("/")
-        String realPath = request.getServletContext().getRealPath("/WEB-INF/upload");
+        String realPath = request.getServletContext().getRealPath("/static/upload");
         // 3.通过图片的完整路径，得到一个file对象
         File file = new File(realPath + "/" + head);
         // 4.通过截取得到图片的后缀

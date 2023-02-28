@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -136,7 +137,7 @@ public class BaseDao {
      * @return
      */
     public static List queryRows(String sql, List<Object> params, Class cls) {
-        List list = null;
+        List list = new ArrayList();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -165,7 +166,7 @@ public class BaseDao {
                 // 实例化对象
                 Object object = cls.newInstance();
                 // 遍历查询的字段数量，得到数据库中查询的每一个列名
-                for (int i = 0; i <= fieldNum ; i++) {
+                for (int i = 1; i <= fieldNum ; i++) {
                     // 得到查询的每一个列名
                     // getColumnLabel() 获取列名或别名
                     // getColumnName() 获取列名
